@@ -9,7 +9,7 @@ provide('year', year);
 </script>
 
 <template>
-    <div class='graph-container'>
+    <div class='graph'>
         <h1>Inflación en Argentina</h1>
         <Visualization />
         <GraphControls />
@@ -17,7 +17,7 @@ provide('year', year);
 </template>
 
 <style scoped>
-.graph-container {
+.graph {
     display: flex;
     width: 80vw;
     border: 1px dashed black;

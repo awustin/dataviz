@@ -9,7 +9,7 @@ const prevYearDisabled = computed(() => Number(year.value) === Number(MIN_YEAR))
 </script>
 
 <template>
-    <div class='graph__button'>
+    <div class='graph__controls'>
         <button @click='year--' :disabled='prevYearDisabled'>{{ '<<' }}</button>
         <button @click='year++' :disabled='nextYearDisabled'>{{ '>>' }}</button>
     </div>
