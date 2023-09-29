@@ -1,17 +1,17 @@
 <script setup>
-import { ref, inject } from 'vue';
+import { ref, inject, watch } from 'vue';
 import { useBarsDiagram } from '../composables/useBarsDiagram';
 
 const year = inject('year', null);
 const graph = ref(null);
 
-useBarsDiagram(graph);
+const { update } = useBarsDiagram(graph, year.value);
 
+watch(year, newValue => update(newValue));
 </script>
 
 <template>
-    <div ref='graph' class='graph__vis'></div>
-    {{ year }}
+    <div ref='graph' class='graph__vis' />
 </template>
 
 <style scoped>
