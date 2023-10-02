@@ -1,26 +1,25 @@
 <script setup>
-import { watch, inject } from 'vue';
+import { inject } from 'vue';
 
-const dateMin = 2017;
-const dateMax = 2023;
-const dateCurrent = inject('dateCurrent');
-
+const dataIndex = inject('dataIndex');
+const data = inject('data', []);
 </script>
 
 <template>
     <div class='graph__controls'>
+        {{ dataIndex }}
         <input
-            id='dateInput'
+            class='dateInput'
             type='range'
-            :min='dateMin'
-            :max='dateMax'
-            v-model='dateCurrent'
+            :min='0'
+            :max='data.length - 1'
+            v-model='dataIndex'
         >
     </div>
 </template>
 
 <style scoped>
-#dateInput {
+.dateInput {
     width: 100%;
 }
 </style>

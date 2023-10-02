@@ -25,14 +25,13 @@ export const useBarsDiagram = (options = {}) => {
     const initDate = new Date(data[0].date);
     const initVariation = data[0].variation_acc;
     const verticalScale = d3.scaleLinear([0, initVariation], [height - offsetBottom, offsetTop]).nice();
-    const timeScale = d3.scaleUtc([initDate, initDate], [offsetX, width - offsetX]);
-    const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).padding(0.05);
+    const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).padding(0.1);
     const svg = d3.create('svg')
         .attr('width', width)
         .attr('height', height)
         .attr('viewBox', [0, 0, width, height])
         .attr('style', 'max-width: 100%; height: auto;');
-    const getTransition = () => svg.transition().duration(2500).ease(d3.easeCubicOut);
+    const getTransition = () => svg.transition().duration(1000).ease(d3.easeCubicOut);
 
     onMounted(() => {
         svg.append('g')
@@ -45,38 +44,34 @@ export const useBarsDiagram = (options = {}) => {
                 .attr('y', height - offsetBottom)
                 .attr('height', 0)
                 .attr('width', bandScale.bandwidth())
-                    .transition(getTransition())
+                    .transition(getTransition().duration(3000))
                     .attr('y', d => verticalScale(d.variation_acc))
                     .attr('height', d => verticalScale(0) - verticalScale(d.variation_acc));
 
         svg.append('g')
             .attr('class', 'xAxis')
             .attr('transform', `translate(0,${height - offsetBottom})`)
-            .call(d3.axisBottom(timeScale).tickSizeOuter(0));
+            .call(d3.axisBottom(bandScale).tickSizeOuter(0));
 
         svg.append('g')
             .attr('class', 'yAxis')
             .attr('transform', `translate(${offsetX},0)`)
             .call(d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed()))
-            .call(g => g.select('.domain').remove());
 
         node.value.append(svg.node());
     });
 
     return {
-        update: dateCurrent => {
-            // Yearly step
-            const date = new Date(`01/01/${Number(dateCurrent) + 1}`);
-            const chunk = d3.filter(data, d => new Date(d.date).getTime() < date.getTime());
-            // Adjust scales            
-            const verticalScaleUpdate = d3.scaleLinear([0, d3.max(chunk, d => d.variation_acc)], [height - offsetBottom, offsetTop]).nice();
-            const timeScaleUpdate = d3.scaleUtc([new Date(chunk[0].date), date], [offsetX, width - offsetX]);
-            const bandScaleUpdate = d3.scaleBand(d3.utcMonth.range(...timeScaleUpdate.domain()).map(d => dateARG(d)), [offsetX, width - offsetX]);
+        update: dataIndex => {
+            const chunk = data.slice(0, Number(dataIndex) + 1);
+            const maxVariation = d3.max(chunk, d => d.variation_acc);
+            const verticalScaleUpdate = d3.scaleLinear([0, maxVariation], [height - offsetBottom, offsetTop]);
+            const bandScaleUpdate = d3.scaleBand(chunk.map(d => dateARG(d.date)), [offsetX, width - offsetX])
+                .paddingOuter(0.1);
 
-            // Adjust axes
             d3.selectAll('g.xAxis')
                 .transition(getTransition())
-                .call(d3.axisBottom(timeScaleUpdate).tickSizeOuter(0));
+                .call(d3.axisBottom(bandScaleUpdate).tickSizeOuter(0));
 
             d3.selectAll('g.yAxis')
                 .transition(getTransition())

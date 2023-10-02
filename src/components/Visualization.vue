@@ -3,7 +3,7 @@ import { ref, inject, watch } from 'vue';
 import { useBarsDiagram } from '../composables/useBarsDiagram';
 import { formatData } from '../utils';
 
-const dateCurrent = inject('dateCurrent');
+const dataIndex = inject('dataIndex');
 const data = inject('data', []);
 const graph = ref(null);
 
@@ -12,12 +12,11 @@ const { update } = useBarsDiagram({
     node: graph,
 });
 
-watch(dateCurrent, v => update(v));
+watch(dataIndex, v => update(v));
 </script>
 
 <template>
     <div ref='graph' class='graph__vis' />
-    {{  dateCurrent }}
 </template>
 
 <style scoped>

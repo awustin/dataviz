@@ -4,9 +4,9 @@ import GraphControls from './GraphControls.vue';
 import Visualization from './Visualization.vue';
 import dataJson from '../data.json';
 
-const initDate = ref(2017);
+const dataIndex = ref(0);
 
-provide('dateCurrent', initDate);
+provide('dataIndex', dataIndex);
 provide('data', dataJson);
 </script>
 
