@@ -2,10 +2,12 @@
 import { ref, provide } from 'vue';
 import GraphControls from './GraphControls.vue';
 import Visualization from './Visualization.vue';
+import dataJson from '../data.json';
 
-const year = ref('2000');
+const initDate = ref(2017);
 
-provide('year', year);
+provide('dateCurrent', initDate);
+provide('data', dataJson);
 </script>
 
 <template>

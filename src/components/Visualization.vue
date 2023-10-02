@@ -1,17 +1,23 @@
 <script setup>
 import { ref, inject, watch } from 'vue';
 import { useBarsDiagram } from '../composables/useBarsDiagram';
+import { formatData } from '../utils';
 
-const year = inject('year', null);
+const dateCurrent = inject('dateCurrent');
+const data = inject('data', []);
 const graph = ref(null);
 
-const { update } = useBarsDiagram(graph, year.value);
+const { update } = useBarsDiagram({
+    data: formatData(data),
+    node: graph,
+});
 
-watch(year, newValue => update(newValue));
+watch(dateCurrent, v => update(v));
 </script>
 
 <template>
     <div ref='graph' class='graph__vis' />
+    {{  dateCurrent }}
 </template>
 
 <style scoped>

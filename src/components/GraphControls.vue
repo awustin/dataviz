@@ -1,16 +1,26 @@
 <script setup>
-import { computed, inject } from 'vue';
+import { watch, inject } from 'vue';
 
-const MIN_YEAR = '2000';
-const MAX_YEAR = '2023';
-const year = inject('year', null);
-const nextYearDisabled = computed(() => Number(year.value) === Number(MAX_YEAR));
-const prevYearDisabled = computed(() => Number(year.value) === Number(MIN_YEAR));
+const dateMin = 2017;
+const dateMax = 2023;
+const dateCurrent = inject('dateCurrent');
+
 </script>
 
 <template>
     <div class='graph__controls'>
-        <button @click='year--' :disabled='prevYearDisabled'>{{ '<<' }}</button>
-        <button @click='year++' :disabled='nextYearDisabled'>{{ '>>' }}</button>
+        <input
+            id='dateInput'
+            type='range'
+            :min='dateMin'
+            :max='dateMax'
+            v-model='dateCurrent'
+        >
     </div>
 </template>
+
+<style scoped>
+#dateInput {
+    width: 100%;
+}
+</style>
