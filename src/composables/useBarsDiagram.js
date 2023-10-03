@@ -23,15 +23,25 @@ export const useBarsDiagram = (options = {}) => {
 
     // First datum
     const initDate = new Date(data[0].date);
-    const initVariation = data[0].variation_acc;
+    const initVariation = data[0].variationAcc;
     const verticalScale = d3.scaleLinear([0, initVariation], [height - offsetBottom, offsetTop]).nice();
-    const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).padding(0.1);
+    const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).paddingOuter(0.1);
     const svg = d3.create('svg')
         .attr('width', width)
         .attr('height', height)
         .attr('viewBox', [0, 0, width, height])
         .attr('style', 'max-width: 100%; height: auto;');
-    const getTransition = () => svg.transition().duration(1000).ease(d3.easeCubicOut);
+
+    const getTransition = () => svg.transition().duration(500).ease(d3.easeCubicOut);
+
+    const getTickLabel = index => {
+        const { monthElapsedShort, year } = data[index];
+
+        if(monthElapsedShort.toUpperCase() === 'DIC')
+            return year;
+
+        return monthElapsedShort;
+    };
 
     onMounted(() => {
         svg.append('g')
@@ -45,18 +55,18 @@ export const useBarsDiagram = (options = {}) => {
                 .attr('height', 0)
                 .attr('width', bandScale.bandwidth())
                     .transition(getTransition().duration(3000))
-                    .attr('y', d => verticalScale(d.variation_acc))
-                    .attr('height', d => verticalScale(0) - verticalScale(d.variation_acc));
+                    .attr('y', d => verticalScale(d.variationAcc))
+                    .attr('height', d => verticalScale(0) - verticalScale(d.variationAcc));
 
         svg.append('g')
             .attr('class', 'xAxis')
             .attr('transform', `translate(0,${height - offsetBottom})`)
-            .call(d3.axisBottom(bandScale).tickSizeOuter(0));
+            .call(d3.axisBottom(bandScale).tickFormat((d,i) => getTickLabel(i)).tickSizeOuter(0));
 
         svg.append('g')
             .attr('class', 'yAxis')
             .attr('transform', `translate(${offsetX},0)`)
-            .call(d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed()))
+            .call(d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed()));
 
         node.value.append(svg.node());
     });
@@ -64,14 +74,13 @@ export const useBarsDiagram = (options = {}) => {
     return {
         update: dataIndex => {
             const chunk = data.slice(0, Number(dataIndex) + 1);
-            const maxVariation = d3.max(chunk, d => d.variation_acc);
-            const verticalScaleUpdate = d3.scaleLinear([0, maxVariation], [height - offsetBottom, offsetTop]);
-            const bandScaleUpdate = d3.scaleBand(chunk.map(d => dateARG(d.date)), [offsetX, width - offsetX])
-                .paddingOuter(0.1);
+            const maxVariation = d3.max(chunk, d => d.variationAcc);
+            const verticalScaleUpdate = verticalScale.domain([0, maxVariation]);
+            const bandScaleUpdate = bandScale.domain(chunk.map(d => dateARG(d.date)));
 
             d3.selectAll('g.xAxis')
                 .transition(getTransition())
-                .call(d3.axisBottom(bandScaleUpdate).tickSizeOuter(0));
+                .call(d3.axisBottom(bandScaleUpdate).tickFormat((d, i) => getTickLabel(i)).tickSizeOuter(0));
 
             d3.selectAll('g.yAxis')
                 .transition(getTransition())
@@ -86,13 +95,13 @@ export const useBarsDiagram = (options = {}) => {
                         .attr('height', 0)
                         .attr('width', bandScaleUpdate.bandwidth())
                         .transition(getTransition())
-                            .attr('y', d => verticalScaleUpdate(d.variation_acc))
-                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.variation_acc)),
+                            .attr('y', d => verticalScaleUpdate(d.variationAcc))
+                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.variationAcc)),
                     update => update
                         .transition(getTransition())
                             .attr('x', d => bandScaleUpdate(dateARG(d.date)))
-                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.variation_acc))
-                            .attr('y', d => verticalScaleUpdate(d.variation_acc))
+                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.variationAcc))
+                            .attr('y', d => verticalScaleUpdate(d.variationAcc))
                             .attr('width', bandScaleUpdate.bandwidth()),
                     exit => exit
                         .transition(getTransition())

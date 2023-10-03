@@ -1,416 +1,416 @@
 [
     {
      "date": "12\/01\/2017",
-     "variation_yearly": 24.8,
-     "variation_monthly": 3.1,
-     "variation_acc": 24.8
+     "variationYearToYear": 24.8,
+     "variationMonthly": 3.1,
+     "variationAcc": 24.8
     },
     {
      "date": "01\/01\/2018",
-     "variation_yearly": 25,
-     "variation_monthly": 1.8,
-     "variation_acc": 27.046400000000006
+     "variationYearToYear": 25,
+     "variationMonthly": 1.8,
+     "variationAcc": 27.046400000000006
     },
     {
      "date": "02\/01\/2018",
-     "variation_yearly": 25.4,
-     "variation_monthly": 2.4,
-     "variation_acc": 30.0955136
+     "variationYearToYear": 25.4,
+     "variationMonthly": 2.4,
+     "variationAcc": 30.0955136
     },
     {
      "date": "03\/01\/2018",
-     "variation_yearly": 25.4,
-     "variation_monthly": 2.3,
-     "variation_acc": 33.087710412799986
+     "variationYearToYear": 25.4,
+     "variationMonthly": 2.3,
+     "variationAcc": 33.087710412799986
     },
     {
      "date": "04\/01\/2018",
-     "variation_yearly": 25.5,
-     "variation_monthly": 2.7,
-     "variation_acc": 36.681078593945585
+     "variationYearToYear": 25.5,
+     "variationMonthly": 2.7,
+     "variationAcc": 36.681078593945585
     },
     {
      "date": "05\/01\/2018",
-     "variation_yearly": 26.3,
-     "variation_monthly": 2.1,
-     "variation_acc": 39.551381244418415
+     "variationYearToYear": 26.3,
+     "variationMonthly": 2.1,
+     "variationAcc": 39.551381244418415
     },
     {
      "date": "06\/01\/2018",
-     "variation_yearly": 29.5,
-     "variation_monthly": 3.7,
-     "variation_acc": 44.71478235046189
+     "variationYearToYear": 29.5,
+     "variationMonthly": 3.7,
+     "variationAcc": 44.71478235046189
     },
     {
      "date": "07\/01\/2018",
-     "variation_yearly": 31.2,
-     "variation_monthly": 3.1,
-     "variation_acc": 49.2009406033262
+     "variationYearToYear": 31.2,
+     "variationMonthly": 3.1,
+     "variationAcc": 49.2009406033262
     },
     {
      "date": "08\/01\/2018",
-     "variation_yearly": 34.4,
-     "variation_monthly": 3.9,
-     "variation_acc": 55.01977728685592
+     "variationYearToYear": 34.4,
+     "variationMonthly": 3.9,
+     "variationAcc": 55.01977728685592
     },
     {
      "date": "09\/01\/2018",
-     "variation_yearly": 40.5,
-     "variation_monthly": 6.5,
-     "variation_acc": 65.09606281050155
+     "variationYearToYear": 40.5,
+     "variationMonthly": 6.5,
+     "variationAcc": 65.09606281050155
     },
     {
      "date": "10\/01\/2018",
-     "variation_yearly": 45.9,
-     "variation_monthly": 5.4,
-     "variation_acc": 74.01125020226864
+     "variationYearToYear": 45.9,
+     "variationMonthly": 5.4,
+     "variationAcc": 74.01125020226864
     },
     {
      "date": "11\/01\/2018",
-     "variation_yearly": 48.5,
-     "variation_monthly": 3.2,
-     "variation_acc": 79.57961020874124
+     "variationYearToYear": 48.5,
+     "variationMonthly": 3.2,
+     "variationAcc": 79.57961020874124
     },
     {
      "date": "12\/01\/2018",
-     "variation_yearly": 47.6,
-     "variation_monthly": 2.6,
-     "variation_acc": 84.24868007416852
+     "variationYearToYear": 47.6,
+     "variationMonthly": 2.6,
+     "variationAcc": 84.24868007416852
     },
     {
      "date": "01\/01\/2019",
-     "variation_yearly": 49.3,
-     "variation_monthly": 2.9,
-     "variation_acc": 89.59189179631937
+     "variationYearToYear": 49.3,
+     "variationMonthly": 2.9,
+     "variationAcc": 89.59189179631937
     },
     {
      "date": "02\/01\/2019",
-     "variation_yearly": 51.3,
-     "variation_monthly": 3.8,
-     "variation_acc": 96.79638368457952
+     "variationYearToYear": 51.3,
+     "variationMonthly": 3.8,
+     "variationAcc": 96.79638368457952
     },
     {
      "date": "03\/01\/2019",
-     "variation_yearly": 54.7,
-     "variation_monthly": 4.7,
-     "variation_acc": 106.04581371775477
+     "variationYearToYear": 54.7,
+     "variationMonthly": 4.7,
+     "variationAcc": 106.04581371775477
     },
     {
      "date": "04\/01\/2019",
-     "variation_yearly": 55.8,
-     "variation_monthly": 3.4,
-     "variation_acc": 113.05137138415841
+     "variationYearToYear": 55.8,
+     "variationMonthly": 3.4,
+     "variationAcc": 113.05137138415841
     },
     {
      "date": "05\/01\/2019",
-     "variation_yearly": 57.3,
-     "variation_monthly": 3.1,
-     "variation_acc": 119.6559638970673
+     "variationYearToYear": 57.3,
+     "variationMonthly": 3.1,
+     "variationAcc": 119.6559638970673
     },
     {
      "date": "06\/01\/2019",
-     "variation_yearly": 55.8,
-     "variation_monthly": 2.7,
-     "variation_acc": 125.58667492228808
+     "variationYearToYear": 55.8,
+     "variationMonthly": 2.7,
+     "variationAcc": 125.58667492228808
     },
     {
      "date": "07\/01\/2019",
-     "variation_yearly": 54.4,
-     "variation_monthly": 2.2,
-     "variation_acc": 130.5495817705784
+     "variationYearToYear": 54.4,
+     "variationMonthly": 2.2,
+     "variationAcc": 130.5495817705784
     },
     {
      "date": "08\/01\/2019",
-     "variation_yearly": 54.5,
-     "variation_monthly": 4,
-     "variation_acc": 139.77156504140154
+     "variationYearToYear": 54.5,
+     "variationMonthly": 4,
+     "variationAcc": 139.77156504140154
     },
     {
      "date": "09\/01\/2019",
-     "variation_yearly": 53.5,
-     "variation_monthly": 5.9,
-     "variation_acc": 153.9180873788442
+     "variationYearToYear": 53.5,
+     "variationMonthly": 5.9,
+     "variationAcc": 153.9180873788442
     },
     {
      "date": "10\/01\/2019",
-     "variation_yearly": 50.5,
-     "variation_monthly": 3.3,
-     "variation_acc": 162.29738426234604
+     "variationYearToYear": 50.5,
+     "variationMonthly": 3.3,
+     "variationAcc": 162.29738426234604
     },
     {
      "date": "11\/01\/2019",
-     "variation_yearly": 52.1,
-     "variation_monthly": 4.3,
-     "variation_acc": 173.57617178562688
+     "variationYearToYear": 52.1,
+     "variationMonthly": 4.3,
+     "variationAcc": 173.57617178562688
     },
     {
      "date": "12\/01\/2019",
-     "variation_yearly": 53.8,
-     "variation_monthly": 3.7,
-     "variation_acc": 183.69849014169506
+     "variationYearToYear": 53.8,
+     "variationMonthly": 3.7,
+     "variationAcc": 183.69849014169506
     },
     {
      "date": "01\/01\/2020",
-     "variation_yearly": 52.9,
-     "variation_monthly": 2.3,
-     "variation_acc": 190.223555414954
+     "variationYearToYear": 52.9,
+     "variationMonthly": 2.3,
+     "variationAcc": 190.223555414954
     },
     {
      "date": "02\/01\/2020",
-     "variation_yearly": 50.3,
-     "variation_monthly": 2,
-     "variation_acc": 196.02802652325312
+     "variationYearToYear": 50.3,
+     "variationMonthly": 2,
+     "variationAcc": 196.02802652325312
     },
     {
      "date": "03\/01\/2020",
-     "variation_yearly": 48.4,
-     "variation_monthly": 3.3,
-     "variation_acc": 205.79695139852046
+     "variationYearToYear": 48.4,
+     "variationMonthly": 3.3,
+     "variationAcc": 205.79695139852046
     },
     {
      "date": "04\/01\/2020",
-     "variation_yearly": 45.6,
-     "variation_monthly": 1.5,
-     "variation_acc": 210.38390566949823
+     "variationYearToYear": 45.6,
+     "variationMonthly": 1.5,
+     "variationAcc": 210.38390566949823
     },
     {
      "date": "05\/01\/2020",
-     "variation_yearly": 43.4,
-     "variation_monthly": 1.5,
-     "variation_acc": 215.0396642545407
+     "variationYearToYear": 43.4,
+     "variationMonthly": 1.5,
+     "variationAcc": 215.0396642545407
     },
     {
      "date": "06\/01\/2020",
-     "variation_yearly": 42.8,
-     "variation_monthly": 2.2,
-     "variation_acc": 221.97053686814056
+     "variationYearToYear": 42.8,
+     "variationMonthly": 2.2,
+     "variationAcc": 221.97053686814056
     },
     {
      "date": "07\/01\/2020",
-     "variation_yearly": 42.4,
-     "variation_monthly": 1.9,
-     "variation_acc": 228.0879770686352
+     "variationYearToYear": 42.4,
+     "variationMonthly": 1.9,
+     "variationAcc": 228.0879770686352
     },
     {
      "date": "08\/01\/2020",
-     "variation_yearly": 40.7,
-     "variation_monthly": 2.7,
-     "variation_acc": 236.94635244948833
+     "variationYearToYear": 40.7,
+     "variationMonthly": 2.7,
+     "variationAcc": 236.94635244948833
     },
     {
      "date": "09\/01\/2020",
-     "variation_yearly": 36.6,
-     "variation_monthly": 2.8,
-     "variation_acc": 246.380850318074
+     "variationYearToYear": 36.6,
+     "variationMonthly": 2.8,
+     "variationAcc": 246.380850318074
     },
     {
      "date": "10\/01\/2020",
-     "variation_yearly": 37.2,
-     "variation_monthly": 3.8,
-     "variation_acc": 259.5433226301608
+     "variationYearToYear": 37.2,
+     "variationMonthly": 3.8,
+     "variationAcc": 259.5433226301608
     },
     {
      "date": "11\/01\/2020",
-     "variation_yearly": 35.8,
-     "variation_monthly": 3.2,
-     "variation_acc": 271.04870895432595
+     "variationYearToYear": 35.8,
+     "variationMonthly": 3.2,
+     "variationAcc": 271.04870895432595
     },
     {
      "date": "12\/01\/2020",
-     "variation_yearly": 36.1,
-     "variation_monthly": 4,
-     "variation_acc": 285.890657312499
+     "variationYearToYear": 36.1,
+     "variationMonthly": 4,
+     "variationAcc": 285.890657312499
     },
     {
      "date": "01\/01\/2021",
-     "variation_yearly": 38.5,
-     "variation_monthly": 4,
-     "variation_acc": 301.32628360499893
+     "variationYearToYear": 38.5,
+     "variationMonthly": 4,
+     "variationAcc": 301.32628360499893
     },
     {
      "date": "02\/01\/2021",
-     "variation_yearly": 40.7,
-     "variation_monthly": 3.6,
-     "variation_acc": 315.7740298147789
+     "variationYearToYear": 40.7,
+     "variationMonthly": 3.6,
+     "variationAcc": 315.7740298147789
     },
     {
      "date": "03\/01\/2021",
-     "variation_yearly": 42.6,
-     "variation_monthly": 4.8,
-     "variation_acc": 335.73118324588825
+     "variationYearToYear": 42.6,
+     "variationMonthly": 4.8,
+     "variationAcc": 335.73118324588825
     },
     {
      "date": "04\/01\/2021",
-     "variation_yearly": 46.3,
-     "variation_monthly": 4.1,
-     "variation_acc": 353.59616175896963
+     "variationYearToYear": 46.3,
+     "variationMonthly": 4.1,
+     "variationAcc": 353.59616175896963
     },
     {
      "date": "05\/01\/2021",
-     "variation_yearly": 48.8,
-     "variation_monthly": 3.3,
-     "variation_acc": 368.5648350970156
+     "variationYearToYear": 48.8,
+     "variationMonthly": 3.3,
+     "variationAcc": 368.5648350970156
     },
     {
      "date": "06\/01\/2021",
-     "variation_yearly": 50.2,
-     "variation_monthly": 3.2,
-     "variation_acc": 383.55890982012016
+     "variationYearToYear": 50.2,
+     "variationMonthly": 3.2,
+     "variationAcc": 383.55890982012016
     },
     {
      "date": "07\/01\/2021",
-     "variation_yearly": 51.8,
-     "variation_monthly": 3,
-     "variation_acc": 398.0656771147237
+     "variationYearToYear": 51.8,
+     "variationMonthly": 3,
+     "variationAcc": 398.0656771147237
     },
     {
      "date": "08\/01\/2021",
-     "variation_yearly": 51.4,
-     "variation_monthly": 2.5,
-     "variation_acc": 410.5173190425917
+     "variationYearToYear": 51.4,
+     "variationMonthly": 2.5,
+     "variationAcc": 410.5173190425917
     },
     {
      "date": "09\/01\/2021",
-     "variation_yearly": 52.5,
-     "variation_monthly": 3.5,
-     "variation_acc": 428.38542520908237
+     "variationYearToYear": 52.5,
+     "variationMonthly": 3.5,
+     "variationAcc": 428.38542520908237
     },
     {
      "date": "10\/01\/2021",
-     "variation_yearly": 52.1,
-     "variation_monthly": 3.5,
-     "variation_acc": 446.87891509140024
+     "variationYearToYear": 52.1,
+     "variationMonthly": 3.5,
+     "variationAcc": 446.87891509140024
     },
     {
      "date": "11\/01\/2021",
-     "variation_yearly": 51.2,
-     "variation_monthly": 2.5,
-     "variation_acc": 460.5508879686852
+     "variationYearToYear": 51.2,
+     "variationMonthly": 2.5,
+     "variationAcc": 460.5508879686852
     },
     {
      "date": "12\/01\/2021",
-     "variation_yearly": 50.9,
-     "variation_monthly": 3.8,
-     "variation_acc": 481.8518217114952
+     "variationYearToYear": 50.9,
+     "variationMonthly": 3.8,
+     "variationAcc": 481.8518217114952
     },
     {
      "date": "01\/01\/2022",
-     "variation_yearly": 50.7,
-     "variation_monthly": 3.9,
-     "variation_acc": 504.54404275824345
+     "variationYearToYear": 50.7,
+     "variationMonthly": 3.9,
+     "variationAcc": 504.54404275824345
     },
     {
      "date": "02\/01\/2022",
-     "variation_yearly": 52.3,
-     "variation_monthly": 4.7,
-     "variation_acc": 532.9576127678808
+     "variationYearToYear": 52.3,
+     "variationMonthly": 4.7,
+     "variationAcc": 532.9576127678808
     },
     {
      "date": "03\/01\/2022",
-     "variation_yearly": 55.1,
-     "variation_monthly": 6.7,
-     "variation_acc": 575.3657728233288
+     "variationYearToYear": 55.1,
+     "variationMonthly": 6.7,
+     "variationAcc": 575.3657728233288
     },
     {
      "date": "04\/01\/2022",
-     "variation_yearly": 58,
-     "variation_monthly": 6,
-     "variation_acc": 615.8877191927286
+     "variationYearToYear": 58,
+     "variationMonthly": 6,
+     "variationAcc": 615.8877191927286
     },
     {
      "date": "05\/01\/2022",
-     "variation_yearly": 60.7,
-     "variation_monthly": 5.1,
-     "variation_acc": 652.3979928715577
+     "variationYearToYear": 60.7,
+     "variationMonthly": 5.1,
+     "variationAcc": 652.3979928715577
     },
     {
      "date": "06\/01\/2022",
-     "variation_yearly": 64,
-     "variation_monthly": 5.3,
-     "variation_acc": 692.2750864937502
+     "variationYearToYear": 64,
+     "variationMonthly": 5.3,
+     "variationAcc": 692.2750864937502
     },
     {
      "date": "07\/01\/2022",
-     "variation_yearly": 71,
-     "variation_monthly": 7.4,
-     "variation_acc": 750.9034428942878
+     "variationYearToYear": 71,
+     "variationMonthly": 7.4,
+     "variationAcc": 750.9034428942878
     },
     {
      "date": "08\/01\/2022",
-     "variation_yearly": 78.5,
-     "variation_monthly": 7,
-     "variation_acc": 810.466683896888
+     "variationYearToYear": 78.5,
+     "variationMonthly": 7,
+     "variationAcc": 810.466683896888
     },
     {
      "date": "09\/01\/2022",
-     "variation_yearly": 83,
-     "variation_monthly": 6.2,
-     "variation_acc": 866.9156182984951
+     "variationYearToYear": 83,
+     "variationMonthly": 6.2,
+     "variationAcc": 866.9156182984951
     },
     {
      "date": "10\/01\/2022",
-     "variation_yearly": 88,
-     "variation_monthly": 6.3,
-     "variation_acc": 927.8313022513001
+     "variationYearToYear": 88,
+     "variationMonthly": 6.3,
+     "variationAcc": 927.8313022513001
     },
     {
      "date": "11\/01\/2022",
-     "variation_yearly": 92.4,
-     "variation_monthly": 4.9,
-     "variation_acc": 978.1950360616138
+     "variationYearToYear": 92.4,
+     "variationMonthly": 4.9,
+     "variationAcc": 978.1950360616138
     },
     {
      "date": "12\/01\/2022",
-     "variation_yearly": 94.8,
-     "variation_monthly": 5.1,
-     "variation_acc": 1033.182982900756
+     "variationYearToYear": 94.8,
+     "variationMonthly": 5.1,
+     "variationAcc": 1033.182982900756
     },
     {
      "date": "01\/01\/2023",
-     "variation_yearly": 98.8,
-     "variation_monthly": 6,
-     "variation_acc": 1101.1739618748015
+     "variationYearToYear": 98.8,
+     "variationMonthly": 6,
+     "variationAcc": 1101.1739618748015
     },
     {
      "date": "02\/01\/2023",
-     "variation_yearly": 102.5,
-     "variation_monthly": 6.6,
-     "variation_acc": 1180.4514433585387
+     "variationYearToYear": 102.5,
+     "variationMonthly": 6.6,
+     "variationAcc": 1180.4514433585387
     },
     {
      "date": "03\/01\/2023",
-     "variation_yearly": 104.3,
-     "variation_monthly": 7.7,
-     "variation_acc": 1279.0462044971462
+     "variationYearToYear": 104.3,
+     "variationMonthly": 7.7,
+     "variationAcc": 1279.0462044971462
     },
     {
      "date": "04\/01\/2023",
-     "variation_yearly": 108.8,
-     "variation_monthly": 8.4,
-     "variation_acc": 1394.8860856749066
+     "variationYearToYear": 108.8,
+     "variationMonthly": 8.4,
+     "variationAcc": 1394.8860856749066
     },
     {
      "date": "05\/01\/2023",
-     "variation_yearly": 114.2,
-     "variation_monthly": 7.8,
-     "variation_acc": 1511.4872003575495
+     "variationYearToYear": 114.2,
+     "variationMonthly": 7.8,
+     "variationAcc": 1511.4872003575495
     },
     {
      "date": "06\/01\/2023",
-     "variation_yearly": 115.6,
-     "variation_monthly": 6,
-     "variation_acc": 1608.176432379002
+     "variationYearToYear": 115.6,
+     "variationMonthly": 6,
+     "variationAcc": 1608.176432379002
     },
     {
      "date": "07\/01\/2023",
-     "variation_yearly": 113.4,
-     "variation_monthly": 6.3,
-     "variation_acc": 1715.7915476188793
+     "variationYearToYear": 113.4,
+     "variationMonthly": 6.3,
+     "variationAcc": 1715.7915476188793
     },
     {
      "date": "08\/01\/2023",
-     "variation_yearly": 124.4,
-     "variation_monthly": 12.4,
-     "variation_acc": 1940.9496995236207
+     "variationYearToYear": 124.4,
+     "variationMonthly": 12.4,
+     "variationAcc": 1940.9496995236207
     }
    ]
