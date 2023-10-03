@@ -25,7 +25,9 @@ export const useBarsDiagram = (options = {}) => {
     const initDate = new Date(data[0].date);
     const initVariation = data[0].variationAcc;
     const verticalScale = d3.scaleLinear([0, initVariation], [height - offsetBottom, offsetTop]).nice();
+    const yAxis = d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed());
     const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).paddingOuter(0.1);
+    const xAxis = d3.axisBottom(bandScale).tickFormat((d,i) => getTickLabel(i, 0)).tickSizeOuter(0)
     const svg = d3.create('svg')
         .attr('width', width)
         .attr('height', height)
@@ -34,16 +36,31 @@ export const useBarsDiagram = (options = {}) => {
 
     const getTransition = () => svg.transition().duration(500).ease(d3.easeCubicOut);
 
-    const getTickLabel = index => {
-        const { monthElapsedShort, year } = data[index];
+    const getTickLabel = (tickIndex, dataIndex) => {
+        const { monthElapsedShort, year } = data[tickIndex];
 
-        if(monthElapsedShort.toUpperCase() === 'DIC')
-            return year;
+        if (!Number(dataIndex)) {
+            return `${monthElapsedShort} ${Number(year)}`
+        }
+
+        if (monthElapsedShort.toUpperCase() === 'DIC')
+            return Number(year) - 1;
+
+        if (Number(dataIndex) > 12) {
+            if (Number(tickIndex) === Number(dataIndex))
+                return `${monthElapsedShort} ${Number(year)}`;
+
+            return ''
+        };
 
         return monthElapsedShort;
     };
 
     onMounted(() => {
+        svg.append('g').attr('class', 'xAxis').attr('transform', `translate(0,${height - offsetBottom})`).call(xAxis);
+
+        svg.append('g').attr('class', 'yAxis').attr('transform', `translate(${offsetX},0)`).call(yAxis);
+
         svg.append('g')
             .attr('class', 'bars')
             .attr('fill', 'coral')
@@ -58,16 +75,6 @@ export const useBarsDiagram = (options = {}) => {
                     .attr('y', d => verticalScale(d.variationAcc))
                     .attr('height', d => verticalScale(0) - verticalScale(d.variationAcc));
 
-        svg.append('g')
-            .attr('class', 'xAxis')
-            .attr('transform', `translate(0,${height - offsetBottom})`)
-            .call(d3.axisBottom(bandScale).tickFormat((d,i) => getTickLabel(i)).tickSizeOuter(0));
-
-        svg.append('g')
-            .attr('class', 'yAxis')
-            .attr('transform', `translate(${offsetX},0)`)
-            .call(d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed()));
-
         node.value.append(svg.node());
     });
 
@@ -76,15 +83,13 @@ export const useBarsDiagram = (options = {}) => {
             const chunk = data.slice(0, Number(dataIndex) + 1);
             const maxVariation = d3.max(chunk, d => d.variationAcc);
             const verticalScaleUpdate = verticalScale.domain([0, maxVariation]);
+            const yAxis = d3.axisLeft(verticalScaleUpdate).ticks().tickFormat(verticalScaleUpdate => verticalScaleUpdate.toFixed());
             const bandScaleUpdate = bandScale.domain(chunk.map(d => dateARG(d.date)));
+            const xAxis = d3.axisBottom(bandScaleUpdate).tickFormat((d, i) => getTickLabel(i, dataIndex)).tickSizeOuter(0);
 
-            d3.selectAll('g.xAxis')
-                .transition(getTransition())
-                .call(d3.axisBottom(bandScaleUpdate).tickFormat((d, i) => getTickLabel(i)).tickSizeOuter(0));
+            d3.selectAll('g.xAxis').transition(getTransition()).call(xAxis);
 
-            d3.selectAll('g.yAxis')
-                .transition(getTransition())
-                .call(d3.axisLeft(verticalScaleUpdate).ticks().tickFormat(verticalScaleUpdate => verticalScaleUpdate.toFixed()))
+            d3.selectAll('g.yAxis').transition(getTransition()).call(yAxis);
 
             d3.selectAll('g.bars').selectAll('rect')
                 .data(chunk)
