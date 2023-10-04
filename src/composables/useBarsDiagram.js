@@ -11,6 +11,7 @@ export const useBarsDiagram = (options = {}) => {
         offsetX = 50,
         offsetBottom = 50,
         offsetTop = 10,
+        paddingFactor = 0.1,
     } = options;
 
     if (!node) {
@@ -26,9 +27,10 @@ export const useBarsDiagram = (options = {}) => {
     const initVariation = data[0].variationAcc;
     const verticalScale = d3.scaleLinear([0, initVariation], [height - offsetBottom, offsetTop]).nice();
     const yAxis = d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed());
-    const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).paddingOuter(0.1);
+    const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).paddingOuter(paddingFactor);
     const xAxis = d3.axisBottom(bandScale).tickFormat((d,i) => getTickLabel(i, 0)).tickSizeOuter(0)
     const svg = d3.create('svg')
+        .attr('class', 'chart')
         .attr('width', width)
         .attr('height', height)
         .attr('viewBox', [0, 0, width, height])
@@ -79,11 +81,11 @@ export const useBarsDiagram = (options = {}) => {
     });
 
     return {
-        update: dataIndex => {
+        onDataIndex: dataIndex => {
             const chunk = data.slice(0, Number(dataIndex) + 1);
             const maxVariation = d3.max(chunk, d => d.variationAcc);
             const verticalScaleUpdate = verticalScale.domain([0, maxVariation]);
-            const yAxis = d3.axisLeft(verticalScaleUpdate).ticks().tickFormat(verticalScaleUpdate => verticalScaleUpdate.toFixed());
+            const yAxis = d3.axisLeft(verticalScaleUpdate).ticks().tickFormat(t => t.toFixed());
             const bandScaleUpdate = bandScale.domain(chunk.map(d => dateARG(d.date)));
             const xAxis = d3.axisBottom(bandScaleUpdate).tickFormat((d, i) => getTickLabel(i, dataIndex)).tickSizeOuter(0);
 
@@ -110,12 +112,43 @@ export const useBarsDiagram = (options = {}) => {
                             .attr('width', bandScaleUpdate.bandwidth()),
                     exit => exit
                         .transition(getTransition())
-                        .attr('x', width - offsetX)
-                        .attr('y', height - offsetBottom)
-                        .attr('height', 0)
-                        .attr('width', 0)
-                        .remove()
+                            .attr('x', width - offsetX - bandScaleUpdate.bandwidth() * paddingFactor)
+                            .attr('y', height - offsetBottom)
+                            .attr('height', 0)
+                            .attr('width', 0)
+                            .remove()
                 );
+        },
+        onResize: isSmall => {
+            if (isSmall) {
+                const height = 2000;
+                const verticalScaleResized = verticalScale.range([height - offsetBottom, offsetTop]).nice();
+                const yAxis = d3.axisLeft(verticalScaleResized).ticks().tickFormat(t => t.toFixed());
+
+                d3.selectAll('g.xAxis').attr('transform', `translate(0,${height - offsetBottom})`);
+                d3.selectAll('g.yAxis').attr('transform', `translate(${offsetX},0)`).call(yAxis);
+                d3.selectAll('svg.chart')
+                    .attr('height', height)
+                    .attr('viewBox', [0, 0, width, height]);
+
+                d3.selectAll('g.bars').selectAll('rect')
+                    .attr('y', d => verticalScaleResized(d.variationAcc))
+                    .attr('height', d => verticalScaleResized(0) - verticalScaleResized(d.variationAcc));
+            } else {
+                const height = 600;
+                const verticalScaleResized = verticalScale.range([height - offsetBottom, offsetTop]).nice();
+                const yAxis = d3.axisLeft(verticalScaleResized).ticks().tickFormat(t => t.toFixed());
+
+                d3.selectAll('g.xAxis').attr('transform', `translate(0,${height - offsetBottom})`);
+                d3.selectAll('g.yAxis').attr('transform', `translate(${offsetX},0)`).call(yAxis);
+                d3.selectAll('svg.chart')
+                    .attr('height', height)
+                    .attr('viewBox', [0, 0, width, height]);
+
+                d3.selectAll('g.bars').selectAll('rect')
+                    .attr('y', d => verticalScaleResized(d.variationAcc))
+                    .attr('height', d => verticalScaleResized(0) - verticalScaleResized(d.variationAcc));
+            }
         },
     }
 };
