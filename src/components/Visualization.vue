@@ -1,21 +1,22 @@
 <script setup>
 import { ref, inject, watch } from 'vue';
-import { useBarsDiagram } from '../composables/useBarsDiagram';
+import { useBarChartTwoSizes } from '../composables/useBarChartTwoSizes';
 import { useScreenSizeBreakpoint } from '../composables/useScreenSizeBreakpoint';
 import { formatData } from '../utils';
 
 const dataIndex = inject('dataIndex');
 const data = inject('data', []);
 const graph = ref(null);
-const isSmall = useScreenSizeBreakpoint();
 
-const { onDataIndex, onResize } = useBarsDiagram({
+const isSmall = useScreenSizeBreakpoint();
+const { onDataIndex, onResize } = useBarChartTwoSizes({
     data: formatData(data),
     node: graph,
+    isSmall: isSmall.value,
 });
 
-watch(dataIndex, dataIndex => onDataIndex(dataIndex));
-watch(isSmall, isSmall => onResize(isSmall));
+watch(dataIndex, onDataIndex);
+watch(isSmall, onResize);
 </script>
 
 <template>
