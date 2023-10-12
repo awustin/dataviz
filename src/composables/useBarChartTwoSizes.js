@@ -8,10 +8,10 @@ export const useBarChartTwoSizes = (options = {}) => {
         node = null,
         width = 1100,
         defaultHeight = 600,
-        smallHeight = 2000,
-        offsetX = 50,
+        smallHeight = 1600,
+        offsetX = 100,
         offsetBottom = 50,
-        offsetTop = 10,
+        offsetTop = 20,
         paddingFactor = 0.1,
         isSmall = null,
     } = options;
@@ -39,7 +39,7 @@ export const useBarChartTwoSizes = (options = {}) => {
         .attr('viewBox', [0, 0, width, height])
         .attr('style', 'max-width: 100%; height: auto;');
 
-    const getTransition = () => svg.transition().duration(400).ease(d3.easeCubicOut);
+    const getTransition = () => svg.transition().duration(300).ease(d3.easeCubicOut);
 
     const getTickLabel = (tickIndex, dataIndex) => {
         const { monthElapsedShort, year } = data[tickIndex];
@@ -80,8 +80,8 @@ export const useBarChartTwoSizes = (options = {}) => {
             .attr('d', ruler.toString());
         gRuler.append('text')
             .attr('class', 'ruler__text')
-            .attr('transform', `translate(${offsetX + 10},25)`)
-            .attr('font-size', '1.4em')
+            .attr('x', '50%')
+            .attr('y', '5%')
             .text(`${value}%`);
     };
 
@@ -174,7 +174,7 @@ export const useBarChartTwoSizes = (options = {}) => {
                 .attr('y', d => verticalScaleResized(d.variationAcc))
                 .attr('height', d => verticalScaleResized(0) - verticalScaleResized(d.variationAcc));
 
-            updateRuler(verticalScaleResized(maxVariation), chunk[chunk.length - 1].variationAcc);
+            updateRuler(verticalScaleResized(maxVariation), maxVariation);
         },
     }
 };

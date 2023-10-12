@@ -7,7 +7,6 @@ const data = inject('data', []);
 
 <template>
     <div class='graph__controls'>
-        {{ dataIndex }}
         <input
             class='dateInput'
             type='range'
@@ -19,7 +18,15 @@ const data = inject('data', []);
 </template>
 
 <style scoped>
-.dateInput {
+@media screen and (max-width: 600px) {
+  .dateInput {
     width: 100%;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .dateInput {
+    width: 50%;
+  }
 }
 </style>

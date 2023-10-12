@@ -23,9 +23,22 @@ watch(isSmall, onResize);
     <div ref='graph' class='graph__vis' />
 </template>
 
-<style scoped>
-.graph__vis {
-    border: 1px dashed black;
-    padding: 1em;
+<style>
+@media screen and (max-width: 600px) {
+    .yAxis text{
+        font-size: 2.5em;
+    }
+
+    .ruler__text {
+    text-anchor: middle;
+    font-size: 3em;
+    }
+}
+
+@media screen and (min-width: 600px) {
+  .ruler__text {
+    text-anchor: middle;
+    font-size: 1.2em;
+  }
 }
 </style>

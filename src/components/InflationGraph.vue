@@ -22,8 +22,7 @@ provide('data', dataJson);
 <style scoped>
 .graph {
     display: flex;
-    width: 80vw;
-    border: 1px dashed black;
+    width: 100vw;
     flex-direction: column;
 }
 </style>
