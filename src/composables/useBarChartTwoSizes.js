@@ -49,7 +49,7 @@ export const useBarChartTwoSizes = (options = {}) => {
         }
 
         if (monthElapsedShort.toUpperCase() === 'DIC')
-            return Number(year) - 1;
+            return Number(year);
 
         if (Number(tickIndex) === Number(dataIndex))
             return `${monthElapsedShort} ${Number(year)}`;
@@ -97,6 +97,7 @@ export const useBarChartTwoSizes = (options = {}) => {
     };
 
     onMounted(() => {
+        console.log(data);
         svg.append('g').attr('class', 'xAxis').attr('transform', `translate(0, ${height - offsetBottom})`).call(xAxis);
         svg.append('g').attr('class', 'yAxis').attr('transform', `translate(${offsetX}, 0)`).call(yAxis);
         svg.append('g')
@@ -122,6 +123,7 @@ export const useBarChartTwoSizes = (options = {}) => {
             const height = window.innerWidth <= 600 ? smallHeight : defaultHeight;
             const chunk = data.slice(0, Number(dataIndex) + 1);
             const maxVariation = d3.max(chunk, d => d.variationAcc);
+            const lastVariation = chunk[chunk.length - 1].variationAcc;
             const verticalScaleUpdate = verticalScale.domain([0, maxVariation]).range([height - offsetBottom, offsetTop]).nice();
             const yAxis = d3.axisLeft(verticalScaleUpdate).ticks().tickFormat(t => t.toFixed());
             const bandScaleUpdate = bandScale.domain(chunk.map(d => dateARG(d.date)));
@@ -155,14 +157,14 @@ export const useBarChartTwoSizes = (options = {}) => {
                             .remove()
                 );
 
-                updateRuler(verticalScaleUpdate(maxVariation), chunk[chunk.length - 1].variationAcc);
+                updateRuler(verticalScaleUpdate(lastVariation), chunk[chunk.length - 1].variationAcc);
         },
         onResize: isSmall => {
             const height = isSmall ? smallHeight : defaultHeight;
             const verticalScaleResized = verticalScale.range([height - offsetBottom, offsetTop]).nice();
             const yAxis = d3.axisLeft(verticalScaleResized).ticks().tickFormat(t => t.toFixed());
             const renderedData = d3.selectAll('g.bars').selectAll('rect').data();
-            const maxVariation = renderedData[renderedData.length - 1].variationAcc;
+            const lastVariation = renderedData[renderedData.length - 1].variationAcc;
 
             d3.selectAll('g.xAxis').attr('transform', `translate(0,${height - offsetBottom})`);
             d3.selectAll('g.yAxis').attr('transform', `translate(${offsetX},0)`).call(yAxis);
@@ -174,7 +176,7 @@ export const useBarChartTwoSizes = (options = {}) => {
                 .attr('y', d => verticalScaleResized(d.variationAcc))
                 .attr('height', d => verticalScaleResized(0) - verticalScaleResized(d.variationAcc));
 
-            updateRuler(verticalScaleResized(maxVariation), maxVariation);
+            updateRuler(verticalScaleResized(lastVariation), lastVariation);
         },
     }
 };

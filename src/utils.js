@@ -3,7 +3,7 @@ export const formatData = data => data.sort((a, b) => new Date(a.date) - new Dat
         const date = new Date(datum.date);
         const month = date.getMonth();
         const year = date.getUTCFullYear();
-        const monthElapsed = new Date(date.setMonth(!date.getMonth() ? 11 : date.getMonth() - 1)).toLocaleDateString('es-AR', { month: 'long' });
+        const monthElapsed = new Date(date.setMonth(date.getMonth())).toLocaleDateString('es-AR', { month: 'long' });
         const monthElapsedShort = monthElapsed.toUpperCase().slice(0, 3);
 
         return {

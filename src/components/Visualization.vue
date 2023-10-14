@@ -29,6 +29,10 @@ watch(isSmall, onResize);
         font-size: 2.5em;
     }
 
+    .xAxis text{
+        font-size: 2.5em;
+    }
+
     .ruler__text {
     text-anchor: middle;
     font-size: 3em;
