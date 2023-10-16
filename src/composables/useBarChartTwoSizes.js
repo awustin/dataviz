@@ -6,8 +6,8 @@ export const useBarChartTwoSizes = (options = {}) => {
     const {
         data = [],
         node = null,
-        width = 1100,
-        defaultHeight = 600,
+        width = 1200,
+        defaultHeight = 700,
         smallHeight = 1600,
         offsetX = 100,
         offsetBottom = 50,
@@ -33,7 +33,7 @@ export const useBarChartTwoSizes = (options = {}) => {
     const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).paddingOuter(paddingFactor);
     const xAxis = d3.axisBottom(bandScale).tickFormat((d,i) => getTickLabel(i, 0)).tickSizeOuter(0);
     const svg = d3.create('svg')
-        .attr('class', 'chart')
+        .attr('class', 'chart-container')
         .attr('width', width)
         .attr('height', height)
         .attr('viewBox', [0, 0, width, height])
@@ -97,7 +97,6 @@ export const useBarChartTwoSizes = (options = {}) => {
     };
 
     onMounted(() => {
-        console.log(data);
         svg.append('g').attr('class', 'xAxis').attr('transform', `translate(0, ${height - offsetBottom})`).call(xAxis);
         svg.append('g').attr('class', 'yAxis').attr('transform', `translate(${offsetX}, 0)`).call(yAxis);
         svg.append('g')
@@ -168,7 +167,7 @@ export const useBarChartTwoSizes = (options = {}) => {
 
             d3.selectAll('g.xAxis').attr('transform', `translate(0,${height - offsetBottom})`);
             d3.selectAll('g.yAxis').attr('transform', `translate(${offsetX},0)`).call(yAxis);
-            d3.selectAll('svg.chart')
+            d3.selectAll('svg.chart-container')
                 .attr('height', height)
                 .attr('viewBox', [0, 0, width, height]);
 

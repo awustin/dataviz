@@ -1,48 +1,42 @@
 <script setup>
-import { ref, inject, watch } from 'vue';
-import { useBarChartTwoSizes } from '../composables/useBarChartTwoSizes';
-import { useScreenSizeBreakpoint } from '../composables/useScreenSizeBreakpoint';
-import { formatData } from '../utils';
-
-const dataIndex = inject('dataIndex');
-const data = inject('data', []);
-const graph = ref(null);
-
-const isSmall = useScreenSizeBreakpoint();
-const { onDataIndex, onResize } = useBarChartTwoSizes({
-    data: formatData(data),
-    node: graph,
-    isSmall: isSmall.value,
-});
-
-watch(dataIndex, onDataIndex);
-watch(isSmall, onResize);
+import BarChart from './BarChart.vue';
+import ItemsPrice from './ItemsPrice.vue';
 </script>
 
 <template>
-    <div ref='graph' class='graph__vis' />
+    <div class='graph__vis'>
+        <BarChart />
+        <ItemsPrice />
+    </div>
 </template>
 
-<style>
+<style scoped>
+.graph__vis{
+    padding-top: 1%;
+    display: grid;
+}
+
 @media screen and (max-width: 600px) {
-    .yAxis text{
-        font-size: 2.5em;
-    }
-
-    .xAxis text{
-        font-size: 2.5em;
-    }
-
-    .ruler__text {
-    text-anchor: middle;
-    font-size: 3em;
+    .graph__vis{
+        grid-template:
+            "chart chart" 3fr
+            "food utilities" 1fr / 1fr 1fr;
     }
 }
 
-@media screen and (min-width: 600px) {
-  .ruler__text {
-    text-anchor: middle;
-    font-size: 1.2em;
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+    .graph__vis {
+        grid-template:
+            "chart chart" 3fr
+            "food utilities" 1fr / 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+  .graph__vis {
+        grid-template:
+            "food chart" 1fr
+            "utilities chart" 1fr / 1fr 2fr;
   }
 }
 </style>

@@ -14,8 +14,8 @@ provide('data', dataJson);
     <div class='graph'>
         <!-- <h1>Inflación en Argentina</h1> -->
         <h2>bar chart</h2>
-        <Visualization />
         <GraphControls />
+        <Visualization />
     </div>
 </template>
 
