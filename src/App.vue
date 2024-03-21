@@ -9,9 +9,8 @@ import InflationGraph from './components/InflationGraph.vue'
 <style>
 #app {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
-  background-color: antiquewhite;
   display: flex;
   justify-content: center;
 }

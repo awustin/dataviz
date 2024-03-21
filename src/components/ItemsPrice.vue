@@ -6,7 +6,7 @@ const data = inject('data', []);
 const foodPrice = computed(() => {
     const foodVar = Number(data[Number(dataIndex.value)].variationFoodAcc);
 
-    return (100 * ((foodVar/100) + 1)).toFixed(1);
+    return (33 * ((foodVar/100) + 1)).toFixed(1);
 });
 const utilitiesPrice = computed(() => {
     const utilitiesVar = Number(data[Number(dataIndex.value)].variationServicesAcc);

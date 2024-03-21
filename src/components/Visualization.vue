@@ -19,8 +19,8 @@ import ItemsPrice from './ItemsPrice.vue';
 @media screen and (max-width: 600px) {
     .graph__vis{
         grid-template:
-            "chart chart" 3fr
-            "food utilities" 1fr / 1fr 1fr;
+            "chart chart" 4fr
+            "food utilities" 1fr;
     }
 }
 

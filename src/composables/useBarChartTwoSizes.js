@@ -7,7 +7,7 @@ export const useBarChartTwoSizes = (options = {}) => {
         data = [],
         node = null,
         width = 1200,
-        defaultHeight = 700,
+        defaultHeight = 650,
         smallHeight = 1600,
         offsetX = 100,
         offsetBottom = 50,

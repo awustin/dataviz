@@ -12,10 +12,10 @@ provide('data', dataJson);
 
 <template>
     <div class='graph'>
-        <!-- <h1>Inflación en Argentina</h1> -->
-        <h2>bar chart</h2>
-        <GraphControls />
+        <h1>Variación (%) acumulada del IPC</h1>
         <Visualization />
+        <GraphControls />
+        <div>En base a datos del INDEC</div>
     </div>
 </template>
 
