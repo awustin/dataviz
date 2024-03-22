@@ -2,18 +2,19 @@
 import { inject } from 'vue';
 
 const dataIndex = inject('dataIndex');
-const data = inject('data', []);
+const ipcGeneral = inject('ipcGeneral', { count: 0 });
 </script>
 
 <template>
     <div class='graph__controls'>
-        <input
+        <input v-if="ipcGeneral.count"
             class='dateInput'
             type='range'
             :min='0'
-            :max='data.length - 1'
+            :max='ipcGeneral.count'
             v-model='dataIndex'
         >
+        <div v-else>...</div>
     </div>
 </template>
 

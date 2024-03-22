@@ -1,13 +1,24 @@
 <script setup>
-import { ref, provide } from 'vue';
+import { ref, provide, onMounted, reactive } from 'vue';
 import GraphControls from './GraphControls.vue';
 import Visualization from './Visualization.vue';
-import dataJson from '../data.json';
+import endpoints from '../endpoints.json';
 
 const dataIndex = ref(0);
+const ipcGeneral = reactive({ ready: false });
 
 provide('dataIndex', dataIndex);
-provide('data', dataJson);
+provide('ipcGeneral', ipcGeneral);
+
+onMounted(async () => {
+    const { url } = endpoints.ipc;
+    const { data = [], count = 0 } = await fetch(url).then(resp => resp.json());
+
+    ipcGeneral.ready = true;
+    ipcGeneral.points = data;
+    ipcGeneral.count = count;
+});
+
 </script>
 
 <template>

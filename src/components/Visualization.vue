@@ -1,12 +1,16 @@
 <script setup>
+import { inject } from 'vue';
 import BarChart from './BarChart.vue';
 import ItemsPrice from './ItemsPrice.vue';
+
+const ipcGeneral = inject('ipcGeneral', { ready: false });
 </script>
 
 <template>
     <div class='graph__vis'>
-        <BarChart />
-        <ItemsPrice />
+        <BarChart v-if="ipcGeneral.ready"/>
+        <h2 v-else class='graph__vis--loading'>...</h2>
+        <ItemsPrice v-if="ipcGeneral.ready"/>
     </div>
 </template>
 

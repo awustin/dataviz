@@ -14,6 +14,7 @@ export const useBarChartTwoSizes = (options = {}) => {
         offsetTop = 20,
         paddingFactor = 0.1,
         isSmall = null,
+        verticalAxisPrecision = 1
     } = options;
 
     if (!node) {
@@ -27,9 +28,9 @@ export const useBarChartTwoSizes = (options = {}) => {
     // First datum
     const height = isSmall ? smallHeight : defaultHeight;
     const initDate = new Date(data[0].date);
-    const initVariation = data[0].variationAcc;
+    const initVariation = data[0].varMonth;
     const verticalScale = d3.scaleLinear([0, initVariation], [height - offsetBottom, offsetTop]).nice();
-    const yAxis = d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed());
+    const yAxis = d3.axisLeft(verticalScale).ticks().tickFormat(verticalScale => verticalScale.toFixed(verticalAxisPrecision));
     const bandScale = d3.scaleBand([dateARG(initDate)], [offsetX, width - offsetX]).paddingOuter(paddingFactor);
     const xAxis = d3.axisBottom(bandScale).tickFormat((d,i) => getTickLabel(i, 0)).tickSizeOuter(0);
     const svg = d3.create('svg')
@@ -42,29 +43,29 @@ export const useBarChartTwoSizes = (options = {}) => {
     const getTransition = () => svg.transition().duration(300).ease(d3.easeCubicOut);
 
     const getTickLabel = (tickIndex, dataIndex) => {
-        const { monthElapsedShort, year } = data[tickIndex];
+        const { monthShort, year } = data[tickIndex];
 
         if (!Number(dataIndex)) {
-            return `${monthElapsedShort} ${Number(year)}`
+            return `${monthShort} ${Number(year)}`
         }
 
-        if (monthElapsedShort.toUpperCase() === 'DIC')
+        if (monthShort.toUpperCase() === 'DIC')
             return Number(year);
 
         if (Number(tickIndex) === Number(dataIndex))
-            return `${monthElapsedShort} ${Number(year)}`;
+            return `${monthShort} ${Number(year)}`;
 
         if (Number(dataIndex) > 12)
             return '';
 
-        return monthElapsedShort;
+        return monthShort;
     };
 
     const addRuler = (y, svg) => {
         const ruler = d3.path();
         const gRuler = svg.append('g').attr('class', 'ruler');
         const data = d3.selectAll('g.bars').selectAll('rect').data();
-        const value = (data[data.length - 1].variationAcc).toFixed(1);
+        const value = (data[data.length - 1].varMonth).toFixed(1);
 
         ruler.moveTo(offsetX, 0);
         ruler.lineTo(width - offsetX, 0);
@@ -110,9 +111,9 @@ export const useBarChartTwoSizes = (options = {}) => {
                 .attr('height', 0)
                 .attr('width', bandScale.bandwidth())
                     .transition(getTransition())
-                    .on('end', () => addRuler(verticalScale(data[0].variationAcc), svg))
-                    .attr('y', d => verticalScale(d.variationAcc))
-                    .attr('height', d => verticalScale(0) - verticalScale(d.variationAcc));
+                    .on('end', () => addRuler(verticalScale(data[0].varMonth), svg))
+                    .attr('y', d => verticalScale(d.varMonth))
+                    .attr('height', d => verticalScale(0) - verticalScale(d.varMonth));
 
         node.value.append(svg.node());
     });
@@ -121,10 +122,10 @@ export const useBarChartTwoSizes = (options = {}) => {
         onDataIndex: dataIndex => {
             const height = window.innerWidth <= 600 ? smallHeight : defaultHeight;
             const chunk = data.slice(0, Number(dataIndex) + 1);
-            const maxVariation = d3.max(chunk, d => d.variationAcc);
-            const lastVariation = chunk[chunk.length - 1].variationAcc;
+            const maxVariation = d3.max(chunk, d => d.varMonth);
+            const lastVariation = chunk[chunk.length - 1].varMonth;
             const verticalScaleUpdate = verticalScale.domain([0, maxVariation]).range([height - offsetBottom, offsetTop]).nice();
-            const yAxis = d3.axisLeft(verticalScaleUpdate).ticks().tickFormat(t => t.toFixed());
+            const yAxis = d3.axisLeft(verticalScaleUpdate).ticks().tickFormat(t => t.toFixed(verticalAxisPrecision));
             const bandScaleUpdate = bandScale.domain(chunk.map(d => dateARG(d.date)));
             const xAxis = d3.axisBottom(bandScaleUpdate).tickFormat((d, i) => getTickLabel(i, dataIndex)).tickSizeOuter(0);
 
@@ -139,13 +140,13 @@ export const useBarChartTwoSizes = (options = {}) => {
                         .attr('height', 0)
                         .attr('width', bandScaleUpdate.bandwidth())
                         .transition(getTransition())
-                            .attr('y', d => verticalScaleUpdate(d.variationAcc))
-                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.variationAcc)),
+                            .attr('y', d => verticalScaleUpdate(d.varMonth))
+                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.varMonth)),
                     update => update
                         .transition(getTransition())
                             .attr('x', d => bandScaleUpdate(dateARG(d.date)))
-                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.variationAcc))
-                            .attr('y', d => verticalScaleUpdate(d.variationAcc))
+                            .attr('height', d => verticalScaleUpdate(0) - verticalScaleUpdate(d.varMonth))
+                            .attr('y', d => verticalScaleUpdate(d.varMonth))
                             .attr('width', bandScaleUpdate.bandwidth()),
                     exit => exit
                         .transition(getTransition())
@@ -156,14 +157,14 @@ export const useBarChartTwoSizes = (options = {}) => {
                             .remove()
                 );
 
-                updateRuler(verticalScaleUpdate(lastVariation), chunk[chunk.length - 1].variationAcc);
+                updateRuler(verticalScaleUpdate(lastVariation), chunk[chunk.length - 1].varMonth);
         },
         onResize: isSmall => {
             const height = isSmall ? smallHeight : defaultHeight;
             const verticalScaleResized = verticalScale.range([height - offsetBottom, offsetTop]).nice();
-            const yAxis = d3.axisLeft(verticalScaleResized).ticks().tickFormat(t => t.toFixed());
+            const yAxis = d3.axisLeft(verticalScaleResized).ticks().tickFormat(t => t.toFixed(verticalAxisPrecision));
             const renderedData = d3.selectAll('g.bars').selectAll('rect').data();
-            const lastVariation = renderedData[renderedData.length - 1].variationAcc;
+            const lastVariation = renderedData[renderedData.length - 1].varMonth;
 
             d3.selectAll('g.xAxis').attr('transform', `translate(0,${height - offsetBottom})`);
             d3.selectAll('g.yAxis').attr('transform', `translate(${offsetX},0)`).call(yAxis);
@@ -172,8 +173,8 @@ export const useBarChartTwoSizes = (options = {}) => {
                 .attr('viewBox', [0, 0, width, height]);
 
             d3.selectAll('g.bars').selectAll('rect')
-                .attr('y', d => verticalScaleResized(d.variationAcc))
-                .attr('height', d => verticalScaleResized(0) - verticalScaleResized(d.variationAcc));
+                .attr('y', d => verticalScaleResized(d.varMonth))
+                .attr('height', d => verticalScaleResized(0) - verticalScaleResized(d.varMonth));
 
             updateRuler(verticalScaleResized(lastVariation), lastVariation);
         },

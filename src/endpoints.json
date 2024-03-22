@@ -1,0 +1,9 @@
+{
+    "ipc": {
+        "key": "145.3_INGNACNAL_DICI_M_15",
+        "id": 1,
+        "description": "Var (%) IPC mensual",
+        "url": "https://apis.datos.gob.ar/series/api/series?ids=145.3_INGNACNAL_DICI_M_15:percent_change&header=titles&sort=asc",
+        "sorted": "asc" 
+    }
+}

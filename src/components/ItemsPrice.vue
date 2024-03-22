@@ -1,29 +1,24 @@
 <script setup>
-import { inject, computed } from 'vue';
+import { inject, ref, watch } from 'vue';
 
 const dataIndex = inject('dataIndex');
-const data = inject('data', []);
-const foodPrice = computed(() => {
-    const foodVar = Number(data[Number(dataIndex.value)].variationFoodAcc);
+const ipcGeneral = inject('ipcGeneral', { data: 0 });
+const foodPrice = ref(33);
+const utilitiesPrice = ref(100);
 
-    return (33 * ((foodVar/100) + 1)).toFixed(1);
-});
-const utilitiesPrice = computed(() => {
-    const utilitiesVar = Number(data[Number(dataIndex.value)].variationServicesAcc);
-
-    return (100 * ((utilitiesVar/100) + 1)).toFixed(1);
-});
+watch(dataIndex, i => foodPrice.value *= Number(ipcGeneral.points[i][1]) + 1);
+watch(dataIndex, i => utilitiesPrice.value *= Number(ipcGeneral.points[i][1]) + 1);
 
 </script>
 
 <template>
     <div class='food'>
         <img class='food__img' src='../assets/food.svg'>
-        <div class='food__price'>$ {{ foodPrice }}</div>
+        <div class='food__price'>$ {{ foodPrice.toFixed(1) }}</div>
     </div>
     <div class='utilities'>
         <img class='utilities__img' src='../assets/utilities.svg'>
-        <div class='utilities__price'>$ {{ utilitiesPrice }}</div>
+        <div class='utilities__price'>$ {{ utilitiesPrice.toFixed(1) }}</div>
     </div>
 </template>
 
