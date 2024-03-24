@@ -1,9 +1,35 @@
 {
-    "ipc": {
+    "ipcVarGeneral": {
         "key": "145.3_INGNACNAL_DICI_M_15",
         "id": 1,
-        "description": "Var (%) IPC mensual",
+        "description": "Tasa de variación mensual del Índice de Precios al Consumidor. Nivel General Nacional. Base diciembre 2016. Valores mensuales.",
         "url": "https://apis.datos.gob.ar/series/api/series?ids=145.3_INGNACNAL_DICI_M_15:percent_change&header=titles&sort=asc",
+        "sorted": "asc" 
+    },
+    "ipcAlimentos": {
+        "key": "145.3_INGNACNAL_DICI_M_15",
+        "id": 2,
+        "description": "Índice de Precios al Consumidor. Alimentos y bebidas no alcohólicas. Nacional. Base diciembre 2016. Valores mensuales.",
+        "url": "https://apis.datos.gob.ar/series/api/series?ids=145.3_INGNACNAL_DICI_M_15:percent_change&header=titles&sort=asc",
+        "sorted": "asc" 
+    },
+    "ipcServicios": {
+        "key": "145.3_INGNACNAL_DICI_M_15",
+        "id": 3,
+        "description": "Var (%) IPC mensual - Servicios",
+        "url": "https://apis.datos.gob.ar/series/api/series?ids=145.3_INGNACNAL_DICI_M_15:percent_change&header=titles&sort=asc",
+        "sorted": "asc" 
+    },
+    "ipc": {
+        "key": "145.3_INGNACNAL_DICI_M_15;146.3_IALIMENNAL_DICI_M_45;147.3_ISERVICNAL_DICI_T_22",
+        "id": 4,
+        "url": "https://apis.datos.gob.ar/series/api/series?ids=145.3_INGNACNAL_DICI_M_15:percent_change,146.3_IALIMENNAL_DICI_M_45,147.3_ISERVICNAL_DICI_T_22&start_date=2017-01-01&format=json&header=titles&sort=asc",
+        "sorted": "asc" 
+    },
+    "ipcIndice": {
+        "key": "146.3_IALIMENNAL_DICI_M_45;147.3_ISERVICNAL_DICI_T_22",
+        "id": 5,
+        "url": "https://apis.datos.gob.ar/series/api/series?ids=146.3_IALIMENNAL_DICI_M_45,147.3_ISERVICNAL_DICI_T_22&start_date=2017-01-01&format=json&header=titles&sort=asc",
         "sorted": "asc" 
     }
 }

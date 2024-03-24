@@ -1,24 +1,31 @@
 <script setup>
 import { inject, ref, watch } from 'vue';
+import { getTotalValuesFromIndex } from '../utils';
 
 const dataIndex = inject('dataIndex');
-const ipcGeneral = inject('ipcGeneral', { data: 0 });
-const foodPrice = ref(33);
-const utilitiesPrice = ref(100);
+const ipcItems = inject('ipcItems', { ready: false });
+const precioAlimentos = ref([]);
+const precioServicios = ref([]);
 
-watch(dataIndex, i => foodPrice.value *= Number(ipcGeneral.points[i][1]) + 1);
-watch(dataIndex, i => utilitiesPrice.value *= Number(ipcGeneral.points[i][1]) + 1);
-
+watch(
+    () => ipcItems.ready,
+    ready => {
+        if (ready) {
+            precioAlimentos.value = getTotalValuesFromIndex(20, ipcItems.indiceAlimentos);
+            precioServicios.value = getTotalValuesFromIndex(200, ipcItems.indiceServicios);
+        }
+    }
+);
 </script>
 
 <template>
-    <div class='food'>
+    <div class='food' v-if="ipcItems.ready">
         <img class='food__img' src='../assets/food.svg'>
-        <div class='food__price'>$ {{ foodPrice.toFixed(1) }}</div>
+        <div class='food__price'>$ {{ Number(precioAlimentos[dataIndex]).toFixed(1) }}</div>
     </div>
-    <div class='utilities'>
+    <div class='utilities' v-if="ipcItems.ready">
         <img class='utilities__img' src='../assets/utilities.svg'>
-        <div class='utilities__price'>$ {{ utilitiesPrice.toFixed(1) }}</div>
+        <div class='utilities__price'>$ {{ Number(precioServicios[dataIndex]).toFixed(1) }}</div>
     </div>
 </template>
 

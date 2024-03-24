@@ -11,7 +11,7 @@ const ipcGeneral = inject('ipcGeneral', { count: 0 });
             class='dateInput'
             type='range'
             :min='0'
-            :max='ipcGeneral.count'
+            :max='ipcGeneral.count - 1'
             v-model='dataIndex'
         >
         <div v-else>...</div>
