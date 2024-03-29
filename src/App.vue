@@ -1,5 +1,5 @@
 <script setup>
-import InflationGraph from './components/InflationGraph.vue'
+import InflationGraph from './components/InflationGraph.vue';
 </script>
 
 <template>

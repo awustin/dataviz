@@ -50,14 +50,14 @@ onMounted(async () => {
 
 <template>
     <div class='graph'>
-        <h1>Variación (%) mensual del IPC</h1>
-        <div class='graph__vis' v-if="ipcGeneral.ready">
-            <BarChart />
-            <ItemsPrice />
+        <h1 class='graph__header'>Variación (%) mensual del IPC</h1>
+        <div class='graph__vis'>
+            <BarChart v-if="ipcGeneral.ready" />
+            <h3 class='graph__loading' v-else>...</h3>
+            <ItemsPrice v-if="false" />
         </div>
-        <h3 class='graph__loading' v-else>...</h3>
         <GraphControls />
-        <div>En base a datos del INDEC</div>
+        <p>En base a datos del INDEC</p>
     </div>
 </template>
 
@@ -68,10 +68,17 @@ onMounted(async () => {
     flex-direction: column;
 }
 
+.graph__header {
+    font-size: 30px;
+}
+
 .graph__vis{
     padding-top: 1%;
-    display: grid;
+    display: flex;
+    justify-content: space-evenly;
 }
+
+/* Two breakpoints (3 screen levels): 600px - 800px*/
 
 @media screen and (max-width: 600px) {
     .graph__vis{
