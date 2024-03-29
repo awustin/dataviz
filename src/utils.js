@@ -18,5 +18,3 @@ export const formatPointsMonthlyVariation = points => points.map(([x, y]) => {
         year,
     }
 });
-
-export const getTotalValuesFromIndex = (initValue, values, base = 100) => values.map(value => (value / base) * initValue);

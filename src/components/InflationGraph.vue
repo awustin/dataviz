@@ -2,16 +2,13 @@
 import { ref, provide, onMounted, reactive } from 'vue';
 import GraphControls from './GraphControls.vue';
 import BarChart from './BarChart.vue';
-import ItemsPrice from './ItemsPrice.vue';
 import endpoints from '../endpoints.json';
 
 const dataIndex = ref(0);
 const ipcGeneral = reactive({ ready: false });
-const ipcItems = reactive({ ready: false });
 
 provide('dataIndex', dataIndex);
 provide('ipcGeneral', ipcGeneral);
-provide('ipcItems', ipcItems);
 
 onMounted(async () => {
     const { url } = endpoints.ipcVarGeneral;
@@ -21,31 +18,6 @@ onMounted(async () => {
     ipcGeneral.count = data.length;
     ipcGeneral.ready = true;
 });
-
-onMounted(async () => {
-    const { url } = endpoints.ipcIndice;
-    const { data = [] } = await fetch(url).then(resp => resp.json());
-    const {
-        indiceAlimentos,
-        indiceServicios,
-    } = data.reduce((acc, datum, index) => {
-        const [, iAlimentos, iServicios] = datum;
-
-        acc.indiceAlimentos.push(iAlimentos);
-        acc.indiceServicios.push(iServicios);
-
-        return acc;
-    }, {
-        indiceAlimentos: [],
-        indiceServicios: [],
-    });
-
-    ipcItems.indiceAlimentos = indiceAlimentos;
-    ipcItems.indiceServicios = indiceServicios;
-    // ipcItems.count = data.length;
-    ipcItems.ready = true;
-});
-
 </script>
 
 <template>
@@ -54,7 +26,6 @@ onMounted(async () => {
         <div class='graph__vis'>
             <BarChart v-if="ipcGeneral.ready" />
             <h3 class='graph__loading' v-else>...</h3>
-            <ItemsPrice v-if="false" />
         </div>
         <GraphControls />
         <p>En base a datos del INDEC</p>
