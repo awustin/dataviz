@@ -45,27 +45,24 @@ export const useBarChartTwoSizes = (options = {}) => {
     const getTickLabel = (tickIndex, dataIndex) => {
         const { monthShort, year } = data[tickIndex];
 
-        if (!Number(dataIndex)) {
-            return `${monthShort} ${Number(year)}`
+        if (monthShort.toUpperCase() === 'DIC') {
+            return Number(year);
         }
 
-        if (monthShort.toUpperCase() === 'DIC')
-            return Number(year);
-
-        if (Number(tickIndex) === Number(dataIndex))
-            return `${monthShort} ${Number(year)}`;
-
-        if (Number(dataIndex) > 12)
+        if (Number(dataIndex) > 12) {
             return '';
-
-        return monthShort;
+        }
     };
 
     const addRuler = (y, svg) => {
+        const data = d3.selectAll('g.bars').selectAll('rect').data();
+        const {
+            varMonth,
+            monthShort,
+            year,
+        } = data[data.length - 1];
         const ruler = d3.path();
         const gRuler = svg.append('g').attr('class', 'ruler');
-        const data = d3.selectAll('g.bars').selectAll('rect').data();
-        const value = (data[data.length - 1].varMonth).toFixed(1);
 
         ruler.moveTo(offsetX, 0);
         ruler.lineTo(width - offsetX, 0);
@@ -73,28 +70,44 @@ export const useBarChartTwoSizes = (options = {}) => {
         gRuler.attr('transform', `translate(0, ${y})`)
             .transition(getTransition())
             .attr('opacity', 1);
+
         gRuler.append('path')
             .attr('class', 'ruler__path')
             .attr('stroke-dasharray', [5, 5])
             .attr('stroke-width', 1)
             .attr('stroke', 'grey')
             .attr('d', ruler.toString());
+
         gRuler.append('text')
-            .attr('class', 'ruler__text')
+            .attr('class', 'ruler__label')
             .attr('x', '50%')
             .attr('y', '5%')
-            .text(`${value}%`);
+            .text(`${varMonth.toFixed(1)}%`);
+
+        gRuler.append('text')
+            .attr('class', 'ruler__label-secondary')
+            .attr('x', '50%')
+            .attr('y', '8%')
+            .text(`${monthShort} ${year}`);
     };
 
     const updateRuler = (y, data) => {
-        const value = data.toFixed(1);
+        const {
+            varMonth,
+            monthShort,
+            year
+        } = data;
+        // const value = data.toFixed(1);
 
         d3.selectAll('g.ruler')
             .transition(getTransition())
             .attr('transform', `translate(0, ${y})`);
-        d3.selectAll('.ruler__text')
+        d3.selectAll('.ruler__label')
             .transition(getTransition())
-            .text(`${value}%`);
+            .text(`${varMonth.toFixed(1)}%`);
+        d3.selectAll('.ruler__label-secondary')
+            .transition(getTransition())
+            .text(`${monthShort} ${year}`);
     };
 
     onMounted(() => {
@@ -102,7 +115,6 @@ export const useBarChartTwoSizes = (options = {}) => {
         svg.append('g').attr('class', 'yAxis').attr('transform', `translate(${offsetX}, 0)`).call(yAxis);
         svg.append('g')
             .attr('class', 'bars')
-            .attr('fill', 'coral')
             .selectAll()
             .data([data[0]], d => d.date)
             .join('rect')
@@ -157,7 +169,7 @@ export const useBarChartTwoSizes = (options = {}) => {
                             .remove()
                 );
 
-                updateRuler(verticalScaleUpdate(lastVariation), chunk[chunk.length - 1].varMonth);
+                updateRuler(verticalScaleUpdate(lastVariation), chunk[chunk.length - 1]);
         },
         onResize: isSmall => {
             const height = isSmall ? smallHeight : defaultHeight;
@@ -176,7 +188,7 @@ export const useBarChartTwoSizes = (options = {}) => {
                 .attr('y', d => verticalScaleResized(d.varMonth))
                 .attr('height', d => verticalScaleResized(0) - verticalScaleResized(d.varMonth));
 
-            updateRuler(verticalScaleResized(lastVariation), lastVariation);
+            updateRuler(verticalScaleResized(lastVariation), renderedData[renderedData.length - 1]);
         },
     }
 };

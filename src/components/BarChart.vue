@@ -28,6 +28,20 @@ watch(isSmall, onResize);
     grid-area: chart;
 }
 
+.bars rect {
+    fill: rgb(255, 135, 75);
+}
+
+.ruler__label {
+    text-anchor: middle;
+    font-size: 1.2em;
+}
+
+.ruler__label-secondary {
+    text-anchor: middle;
+    font-size: 0.8em;
+}
+
 @media screen and (max-width: 600px) {
     .yAxis text{
         font-size: 2.7em;
@@ -37,16 +51,15 @@ watch(isSmall, onResize);
         font-size: 2.7em;
     }
 
-    .ruler__text {
-    text-anchor: middle;
-    font-size: 3em;
+    .ruler__label {
+        font-size: 2.7em;
+    }
+
+    .ruler__label-secondary {
+        font-size: 1.5em;
     }
 }
 
 @media screen and (min-width: 600px) {
-  .ruler__text {
-    text-anchor: middle;
-    font-size: 1.2em;
-  }
 }
 </style>
