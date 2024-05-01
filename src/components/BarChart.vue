@@ -33,30 +33,42 @@ watch(isSmall, onResize);
 }
 
 .ruler__label {
+    font-family: monospace;
     text-anchor: middle;
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
-.ruler__label-secondary {
-    text-anchor: middle;
-    font-size: 0.8em;
+.ruler__tag {
+    height: 1.5em;
+    width: 70px;
+    border-radius: 10%;
+    background-color: rgb(83, 104, 197);
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 600px) {
     .yAxis text{
-        font-size: 2.7em;
+        font-size: 1.5em;
     }
 
     .xAxis text{
-        font-size: 2.7em;
+        font-size: 1.9em;
     }
 
     .ruler__label {
         font-size: 2.7em;
     }
 
-    .ruler__label-secondary {
-        font-size: 1.5em;
+    .ruler__tag {
+        height: 1.5em;
+        width: 70px;
+        border-radius: 10%;
+        background-color: rgb(83, 104, 197);
+        color: white;
+        font-family: monospace;
+        font-weight: bold;
     }
 }
 

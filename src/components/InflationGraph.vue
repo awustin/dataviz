@@ -22,13 +22,13 @@ onMounted(async () => {
 
 <template>
     <div class='graph'>
-        <h1 class='graph__header'>Variación (%) mensual del IPC</h1>
+        <h1 class='graph__header'>Variación mensual del IPC [%]</h1>
         <div class='graph__vis'>
             <BarChart v-if="ipcGeneral.ready" />
             <h3 class='graph__loading' v-else>...</h3>
         </div>
         <GraphControls />
-        <p>En base a datos del INDEC</p>
+        <div class="disclaimer">En base a datos del INDEC</div>
     </div>
 </template>
 
@@ -49,6 +49,10 @@ onMounted(async () => {
     justify-content: space-evenly;
 }
 
+.disclaimer {
+    font-style: italic;
+    font-size: x-small;
+}
 /* Two breakpoints (3 screen levels): 600px - 800px*/
 
 @media screen and (max-width: 600px) {
