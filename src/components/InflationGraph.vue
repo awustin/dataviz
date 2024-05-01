@@ -3,6 +3,7 @@ import { ref, provide, onMounted, reactive } from 'vue';
 import GraphControls from './GraphControls.vue';
 import BarChart from './BarChart.vue';
 import endpoints from '../endpoints.json';
+import { formatPointsMonthlyVariation } from '../utils';
 
 const dataIndex = ref(0);
 const ipcGeneral = reactive({ ready: false });
@@ -14,7 +15,7 @@ onMounted(async () => {
     const { url } = endpoints.ipcVarGeneral;
     const { data = [] } = await fetch(url).then(resp => resp.json());
 
-    ipcGeneral.points = data;
+    ipcGeneral.points = formatPointsMonthlyVariation(data);
     ipcGeneral.count = data.length;
     ipcGeneral.ready = true;
 });
@@ -40,6 +41,7 @@ onMounted(async () => {
 }
 
 .graph__header {
+    padding-inline: 30px;
     font-size: 30px;
 }
 
@@ -47,6 +49,8 @@ onMounted(async () => {
     padding-top: 1%;
     display: flex;
     justify-content: space-evenly;
+    flex-flow: column;
+    align-items: center;
 }
 
 .disclaimer {

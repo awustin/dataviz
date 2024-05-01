@@ -2,28 +2,43 @@
 import { ref, inject, watch } from 'vue';
 import { useBarChartTwoSizes } from '../composables/useBarChartTwoSizes';
 import { useScreenSizeBreakpoint } from '../composables/useScreenSizeBreakpoint';
-import { formatPointsMonthlyVariation } from '../utils';
 
 const dataIndex = inject('dataIndex');
 const ipcGeneral = inject('ipcGeneral', { points: [] });
 const graph = ref(null);
+const xLabel = ref(`${ipcGeneral.points[dataIndex.value].monthShort} ${ipcGeneral.points[dataIndex.value].year}`);
 
 const isSmall = useScreenSizeBreakpoint();
 const { onDataIndex, onResize } = useBarChartTwoSizes({
-    data: formatPointsMonthlyVariation(ipcGeneral.points),
+    data: ipcGeneral.points,
     node: graph,
     isSmall: isSmall.value,
 });
 
-watch(dataIndex, onDataIndex);
+watch(dataIndex, value => {
+    xLabel.value = `${ipcGeneral.points[dataIndex.value].monthShort} ${ipcGeneral.points[dataIndex.value].year}`;
+    onDataIndex(value);
+});
 watch(isSmall, onResize);
 </script>
 
 <template>
+    <div class='x-label'>{{ xLabel }}</div>
     <div ref='graph' class='bar-chart'/>
 </template>
 
 <style>
+.x-label {
+    width: fit-content;
+    padding: 5px;
+    border-radius: 10%;
+    font-weight: 600;
+    color: #666666;
+    font-stretch: extra-condensed;
+    font-family: 'Francois One';
+    font-size: 1.3em;
+}
+
 .bar-chart {
     grid-area: chart;
 }
