@@ -29,8 +29,8 @@ const ipcGeneral = inject('ipcGeneral', { count: 0 });
     appearance: none;
     height: 15px;
     width: 15px;
-    background-color: rgb(122, 141, 226);
-    box-shadow: -480px 0 0 480px rgb(122, 141, 226);
+    background-color: rgb(177, 117, 159);
+    box-shadow: -480px 0 0 480px rgb(177, 117, 159);
 }
 
 @media screen and (max-width: 600px) {

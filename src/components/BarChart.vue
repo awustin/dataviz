@@ -44,7 +44,8 @@ watch(isSmall, onResize);
 }
 
 .bars rect {
-    fill: rgb(255, 135, 75);
+    /* fill: rgb(255, 135, 75); */
+    fill: rgb(254, 190, 152);
 }
 
 .ruler__label {
