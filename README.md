@@ -1,5 +1,7 @@
 # dataviz
-Visit the current build in [awustin.github.io/dataviz/](https://awustin.github.io/dataviz/)
+Small project on Vue and JS library D3 for data visualization
+
+![alt text](image.png)
 
 ### Development
 - Install project dependencies
